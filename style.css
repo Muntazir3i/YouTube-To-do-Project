@@ -1,0 +1,115 @@
+:root{
+    --bg-color:hsl(235, 21%, 11%);
+    --todo-card-color:hsl(235, 24%, 19%);
+    --main-font:"Josefin Sans", sans-serif;
+    --todo-color:hsl(236, 9%, 61%);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--main-font);
+    font-size: 1.2rem;
+    
+}
+
+h1{
+    color: white;
+}
+
+body{
+    background-color: var(--bg-color);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-todo-container{
+    /* background-color: var(--todo-card-color); */
+    width: 90%;
+}
+
+.title-icon-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todo-input{
+    width: 100%;
+    margin-top: 1.5rem;
+    background-color: var(--todo-card-color);
+    border: none;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    color: var(--todo-color);
+}
+
+.todos-container{
+    margin-top: 1.5rem;
+    /* padding: 1rem; */
+    background-color: var(--todo-card-color);
+    color: var(--todo-color);
+}
+
+ul{
+    list-style: none;
+}
+
+li{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom:1px solid hsl(237, 14%, 26%) ;
+}
+
+.completed{
+    text-decoration: line-through;
+}
+
+
+.del-btn, .comp-btn{
+    background: none;
+    border: none;
+}
+
+.progress-clear-container{
+    padding: 1rem;
+}
+
+.list-stats{
+    color: hsl(237, 14%, 26%) ;
+}
+
+.completed{
+    text-decoration: line-through;
+    text-decoration-color: red;
+}
+
+.progress-clear-container{
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.2rem;
+}
+
+.option-container{
+    margin-top: 1.5rem;
+    background-color: var(--todo-card-color);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.option-container > button{
+    background: none;
+    border: none;
+    color: hsl(236, 33%, 92%);
+}
+
+.option-container > button:hover{
+   color: hsl(237, 44%, 54%);
+}
+
