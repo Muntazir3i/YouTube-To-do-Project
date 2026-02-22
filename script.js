@@ -107,6 +107,13 @@ function showActive() {
     })
 }
 
+function showAll(){
+    ul.innerHTML = "";
+    data.forEach((item) => {
+        render(item)
+    })
+}
+
 
 todoInput.addEventListener("keydown", (event) => {
     if (event.code === "Enter") {
@@ -141,9 +148,6 @@ mainTodoContainer.addEventListener("click", (event) => {
     } else if (event.target.classList.contains("show-active")) {
         showActive()
     }else if(event.target.classList.contains("show-all")){
-        ul.innerHTML = "";
-        data.forEach((item) => {
-            render(item)
-        })
+       showAll()
     }
 })
