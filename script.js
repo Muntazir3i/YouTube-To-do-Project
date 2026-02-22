@@ -23,7 +23,7 @@ function render(todo) {
           </div>
          <button class="del-btn"><img src="./images/icon-cross.svg" alt=""></button>
         </li>`);
-    progressContainer.innerHTML = `<p class="list-stats"> ${data.length} item left </p> <button class="comp-btn">Clear Completed </button>`
+    progressContainer.innerHTML = `<p class="list-stats"> ${data.length} item left </p> <button class="clear-btn">Clear Completed </button>`
 }
 
 
@@ -32,7 +32,7 @@ function deleteTodo(id, li) {
     console.log(data);
     li.remove();
     progressContainer.innerHTML = data.length > 0
-        ? `<p class="list-stats">${data.length} item left</p> <button class="comp-btn">Clear Completed </button>`
+        ? `<p class="list-stats">${data.length} item left</p> <button class="clear-btn">Clear Completed </button>`
         : `<p class="list-stats">No item</p>`;
 
 }
@@ -71,10 +71,10 @@ function completed(event) {
                 return item;
             })
         }
-        
+
         progressContainer.innerHTML = data.length > 0
 
-            ? `<p class="list-stats">${data.length} item left</p> <button class="comp-btn">Clear Completed </button>`
+            ? `<p class="list-stats">${data.length} item left</p> <button class="clear-btn">Clear Completed </button>`
             : `<p class="list-stats">No item</p>`;
     }
 }
@@ -107,7 +107,7 @@ function showActive() {
     })
 }
 
-function showAll(){
+function showAll() {
     ul.innerHTML = "";
     data.forEach((item) => {
         render(item)
@@ -136,18 +136,23 @@ ul.addEventListener("click", (event) => {
     }
 })
 
-todoContainer.addEventListener("click", (event) => {
-    if (event.target.classList.contains("comp-btn")) {
-        clearComplete()
-    }
-})
+
 
 mainTodoContainer.addEventListener("click", (event) => {
-    if (event.target.classList.contains("show-comp")) {
-        showComplete()
-    } else if (event.target.classList.contains("show-active")) {
-        showActive()
-    }else if(event.target.classList.contains("show-all")){
-       showAll()
+    let btn = event.target.closest("button");
+    if (!btn) return;
+    switch (btn.className) {
+        case "show-all":
+            showAll()
+            break;
+        case "show-active":
+            showActive()
+            break;
+        case "show-comp":
+            showComplete()
+            break;
+        case "clear-btn":
+            clearComplete()
+            break;
     }
 })

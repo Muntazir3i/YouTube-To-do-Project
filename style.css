@@ -70,10 +70,12 @@ li{
 }
 
 
-.del-btn, .comp-btn{
+.del-btn, .clear-btn{
     background: none;
     border: none;
+    color: hsl(236, 9%, 61%);
 }
+
 
 .progress-clear-container{
     padding: 1rem;
