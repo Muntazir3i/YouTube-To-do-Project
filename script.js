@@ -54,27 +54,26 @@ function completed(event) {
         span.classList.toggle("completed");
         let id = event.target.closest("li").dataset.id;
 
-        // if (event.target.checked) {
-        //     // move from data to completedData
-        //     data = data.map((item) => {
-        //         if (item.id == id) {
-        //             return { ...item, complete: true }
-        //         }
-        //         return item;
-        //     })
+        if (event.target.checked) {
+            // move from data to completedData
+            data = data.map((item) => {
+                if (item.id == id) {
+                    return { ...item, complete: true }
+                }
+                return item;
+            })
 
-        // } else {
-        //     data = data.map((item) => {
-        //         if (item.id == id) {
-        //             return { ...item, complete: false }
-        //         }
-        //         return item;
-        //     })
-        // }
-
-        data = data.map((item)=>item.id == id ? {...item,complete:!item.complete}:item)
-        progressContainer.innerHTML = data.length > 0
+        } else {
+            data = data.map((item) => {
+                if (item.id == id) {
+                    return { ...item, complete: false }
+                }
+                return item;
+            })
+        }
         
+        progressContainer.innerHTML = data.length > 0
+
             ? `<p class="list-stats">${data.length} item left</p> <button class="comp-btn">Clear Completed </button>`
             : `<p class="list-stats">No item</p>`;
     }
