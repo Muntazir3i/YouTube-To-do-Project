@@ -12,6 +12,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
 })
 
 
+function updateProgress() {
+    let remaining = data.filter((item) => !item.complete).length;
+    progressContainer.innerHTML = remaining > 0
+        ? `<p class="list-stats">${remaining} item left</p><button class="clear-btn">Clear Completed</button>`
+        : `<p class="list-stats">No item</p>`;
+}
+
+
 function render(todo) {
     ul.insertAdjacentHTML("beforeend",
         `<li data-id = "${todo.id}">
@@ -23,7 +31,7 @@ function render(todo) {
           </div>
          <button class="del-btn"><img src="./images/icon-cross.svg" alt=""></button>
         </li>`);
-    progressContainer.innerHTML = `<p class="list-stats"> ${data.length} item left </p> <button class="clear-btn">Clear Completed </button>`
+    updateProgress()
 }
 
 
@@ -31,9 +39,7 @@ function deleteTodo(id, li) {
     data = data.filter((item) => item.id != id);
     console.log(data);
     li.remove();
-    progressContainer.innerHTML = data.length > 0
-        ? `<p class="list-stats">${data.length} item left</p> <button class="clear-btn">Clear Completed </button>`
-        : `<p class="list-stats">No item</p>`;
+    updateProgress()
 
 }
 
@@ -72,10 +78,7 @@ function completed(event) {
             })
         }
 
-        progressContainer.innerHTML = data.length > 0
-
-            ? `<p class="list-stats">${data.length} item left</p> <button class="clear-btn">Clear Completed </button>`
-            : `<p class="list-stats">No item</p>`;
+        updateProgress()
     }
 }
 
