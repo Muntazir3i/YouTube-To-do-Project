@@ -85,12 +85,12 @@ function completed(event) {
 }
 
 function clearComplete() {
-    ul.innerHTML = "";
+    ul.innerHTML = ""
     data.forEach((item) => {
         if (!item.complete) {
             render(item)
         }
-    });
+    })
 
 }
 
@@ -141,11 +141,11 @@ todoContainer.addEventListener("click", (event) => {
 })
 
 mainTodoContainer.addEventListener("click", (event) => {
-    if (event.target.classList.contains("comp-btn")) {
+    if (event.target.classList.contains("show-comp")) {
         showComplete()
-    } else if (event.target.classList.contains("active-btn")) {
+    } else if (event.target.classList.contains("show-active")) {
         showActive()
-    }else if(event.target.classList.contains("all-btn")){
+    }else if(event.target.classList.contains("show-all")){
         ul.innerHTML = "";
         data.forEach((item) => {
             render(item)
