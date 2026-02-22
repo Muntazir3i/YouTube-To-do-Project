@@ -6,11 +6,19 @@ let ul = document.querySelector("ul")
 let progressContainer = document.querySelector(".progress-clear-container")
 let todoContainer = document.querySelector(".todos-container")
 let mainTodoContainer = document.querySelector(".main-todo-container")
+let themeBtn = document.querySelector(".theme-btn")
+let body = document.querySelector("body")
+let title = document.querySelector(".title")
 
 document.addEventListener("DOMContentLoaded", (event) => {
     progressContainer.insertAdjacentHTML("beforeend", `<p class="list-stats">No item </p>`)
 })
 
+
+function themeChange(){
+        body.classList.toggle("light")
+        title.classList.toggle("todo-title-light")
+}
 
 function updateProgress() {
     let remaining = data.filter((item) => !item.complete).length;
@@ -157,5 +165,8 @@ mainTodoContainer.addEventListener("click", (event) => {
         case "clear-btn":
             clearComplete()
             break;
+        case "theme-btn":
+            themeChange()
+            break;      
     }
 })

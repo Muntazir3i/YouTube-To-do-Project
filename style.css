@@ -52,6 +52,7 @@ body{
     /* padding: 1rem; */
     background-color: var(--todo-card-color);
     color: var(--todo-color);
+    border-radius: 0.5rem;
 }
 
 ul{
@@ -70,10 +71,23 @@ li{
 }
 
 
-.del-btn, .clear-btn{
+.del-btn, .clear-btn, .theme-btn, .list-stats{
     background: none;
     border: none;
     color: hsl(236, 9%, 61%);
+    
+}
+
+.clear-btn{
+    font-size: 1rem;
+}
+
+.light{
+    background-color: hsl(0, 0%, 98%);
+}
+
+.todo-title-light{
+    color: black;
 }
 
 
@@ -81,9 +95,7 @@ li{
     padding: 1rem;
 }
 
-.list-stats{
-    color: hsl(237, 14%, 26%) ;
-}
+
 
 .completed{
     text-decoration: line-through;
@@ -103,6 +115,7 @@ li{
     display: flex;
     justify-content: center;
     gap: 1rem;
+    border-radius: 0.5rem;
 }
 
 .option-container > button{
