@@ -44,6 +44,8 @@ function render(todo) {
 
 
 function deleteTodo(id, li) {
+    
+    if (!confirm("Are you sure you want to delete this")) return;
     data = data.filter((item) => item.id != id);
     console.log(data);
     li.remove();
@@ -57,8 +59,6 @@ function addTodo(input) {
     index++;
     data.push(todo)
     render(todo)
-    // console.log(data);
-
     input.value = ""
 }
 
@@ -69,7 +69,6 @@ function completed(event) {
         let id = event.target.closest("li").dataset.id;
 
         if (event.target.checked) {
-            // move from data to completedData
             data = data.map((item) => {
                 if (item.id == id) {
                     return { ...item, complete: true }
