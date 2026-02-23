@@ -29,12 +29,15 @@ body{
 .main-todo-container{
     /* background-color: var(--todo-card-color); */
     width: 90%;
+    
 }
 
 .title-icon-container{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: var(--todo-card-color);
+    padding: 1rem;
 }
 
 .todo-input{
@@ -83,7 +86,7 @@ li{
 }
 
 .light{
-    background-color: hsl(0, 0%, 98%);
+    background-color: hsl(234, 39%, 85%)
 }
 
 .todo-title-light{
@@ -127,4 +130,11 @@ li{
 .option-container > button:hover{
    color: hsl(237, 44%, 54%);
 }
+
+.sun{
+    background-color: black;
+    color:black
+}
+
+
 

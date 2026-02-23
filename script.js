@@ -1,5 +1,7 @@
 let data = [];
 let index = 1;
+let tbtn;
+let themeToggle = false
 
 let todoInput = document.querySelector(".todo-input");
 let ul = document.querySelector("ul")
@@ -9,16 +11,32 @@ let mainTodoContainer = document.querySelector(".main-todo-container")
 let themeBtn = document.querySelector(".theme-btn")
 let body = document.querySelector("body")
 let title = document.querySelector(".title")
+let titleIconContainer = document.querySelector(".title-icon-container")
+
+
+let darkBtn = document.createElement("button");
+darkBtn.classList.add("theme-btn");
+darkBtn.insertAdjacentHTML("beforeend", `<img src="./images/icon-moon.svg" alt="">`)
 
 document.addEventListener("DOMContentLoaded", (event) => {
     progressContainer.insertAdjacentHTML("beforeend", `<p class="list-stats">No item </p>`)
 })
 
 
-function themeChange(){
-        body.classList.toggle("light")
-        title.classList.toggle("todo-title-light")
+function themeChange(btn) {
+    themeToggle = !themeToggle;
+    body.classList.toggle("light");
+
+    const currentBtn = btn
+    if (currentBtn) currentBtn.remove();
+
+    if (themeToggle) {
+        titleIconContainer.insertAdjacentElement("beforeend", darkBtn);
+    } else {
+        titleIconContainer.insertAdjacentElement("beforeend", themeBtn);
+    }
 }
+
 
 function updateProgress() {
     let remaining = data.filter((item) => !item.complete).length;
@@ -44,7 +62,7 @@ function render(todo) {
 
 
 function deleteTodo(id, li) {
-    
+
     if (!confirm("Are you sure you want to delete this")) return;
     data = data.filter((item) => item.id != id);
     console.log(data);
@@ -165,7 +183,7 @@ mainTodoContainer.addEventListener("click", (event) => {
             clearComplete()
             break;
         case "theme-btn":
-            themeChange()
-            break;      
+            themeChange(btn)
+            break;
     }
 })
