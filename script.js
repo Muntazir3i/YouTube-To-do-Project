@@ -14,38 +14,24 @@ let title = document.querySelector(".title")
 let titleIconContainer = document.querySelector(".title-icon-container")
 
 
-let darkBtn = document.createElement("button");
-darkBtn.classList.add("theme-btn");
-darkBtn.insertAdjacentHTML("beforeend", `<img src="./images/icon-moon.svg" alt="">`)
-
+// Initial render of the progress container with "No item" message
 document.addEventListener("DOMContentLoaded", (event) => {
     progressContainer.insertAdjacentHTML("beforeend", `<p class="list-stats">No item </p>`)
 })
 
-
-function themeChange(btn) {
-    themeToggle = !themeToggle;
-    body.classList.toggle("light");
-
-    const currentBtn = btn
-    if (currentBtn) currentBtn.remove();
-
-    if (themeToggle) {
-        titleIconContainer.insertAdjacentElement("beforeend", darkBtn);
-    } else {
-        titleIconContainer.insertAdjacentElement("beforeend", themeBtn);
-    }
+// Function to add a new todo item
+function addTodo(input) {
+    if (!input.value.trim()) return
+    let todo = { id: index, data: input.value.trim(), complete: false }
+    index++;
+    data.push(todo)
+    render(todo)
+    input.value = ""
 }
 
 
-function updateProgress() {
-    let remaining = data.filter((item) => !item.complete).length;
-    progressContainer.innerHTML = remaining > 0
-        ? `<p class="list-stats">${remaining} item left</p><button class="clear-btn">Clear Completed</button>`
-        : `<p class="list-stats">No item</p>`;
-}
 
-
+// Function to render a todo item in the DOM
 function render(todo) {
     ul.insertAdjacentHTML("beforeend",
         `<li data-id = "${todo.id}">
@@ -61,6 +47,7 @@ function render(todo) {
 }
 
 
+// Function to delete a todo item
 function deleteTodo(id, li) {
 
     if (!confirm("Are you sure you want to delete this")) return;
@@ -71,15 +58,16 @@ function deleteTodo(id, li) {
 
 }
 
-function addTodo(input) {
-    if (!input.value.trim()) return
-    let todo = { id: index, data: input.value.trim(), complete: false }
-    index++;
-    data.push(todo)
-    render(todo)
-    input.value = ""
+
+// Function to check the remaining items and update the progress container
+function updateProgress() {
+    let remaining = data.filter((item) => !item.complete).length;
+    progressContainer.innerHTML = remaining > 0
+        ? `<p class="list-stats">${remaining} item left</p><button class="clear-btn">Clear Completed</button>`
+        : `<p class="list-stats">No item</p>`;
 }
 
+// Function to mark a todo item as completed or not completed
 function completed(event) {
     if (event.target.classList.contains("checkbox")) {
         let span = event.target.closest("label").querySelector("span");
@@ -107,42 +95,7 @@ function completed(event) {
     }
 }
 
-function clearComplete() {
-    ul.innerHTML = ""
-    data.forEach((item) => {
-        if (!item.complete) {
-            render(item)
-        }
-    })
-
-}
-
-function showComplete() {
-    ul.innerHTML = ""
-    data.forEach((item) => {
-        if (item.complete) {
-            render(item)
-        }
-    })
-}
-
-function showActive() {
-    ul.innerHTML = ""
-    data.forEach((item) => {
-        if (!item.complete) {
-            render(item)
-        }
-    })
-}
-
-function showAll() {
-    ul.innerHTML = "";
-    data.forEach((item) => {
-        render(item)
-    })
-}
-
-
+// Event listener for adding a new todo item when the Enter key is pressed
 todoInput.addEventListener("keydown", (event) => {
     if (event.code === "Enter") {
         addTodo(todoInput)
@@ -150,11 +103,7 @@ todoInput.addEventListener("keydown", (event) => {
 
 })
 
-ul.addEventListener("change", (event) => {
-    completed(event)
-
-})
-
+// Event listener for handling clicks on the delete buttons 
 ul.addEventListener("click", (event) => {
     let btn = event.target.closest("button")
     if (btn) {
@@ -165,7 +114,55 @@ ul.addEventListener("click", (event) => {
 })
 
 
+// Event listener for handling changes to the checkbox inputs
+ul.addEventListener("change", (event) => {
+    completed(event)
 
+})
+
+
+
+// Function to clear completed todo items from the dom and the data array
+function clearComplete() {
+    ul.innerHTML = ""
+    data.forEach((item) => {
+        if (!item.complete) {
+            render(item)
+        }
+    })
+
+}
+
+// Function to show only completed todo items in the dom
+function showComplete() {
+    ul.innerHTML = ""
+    data.forEach((item) => {
+        if (item.complete) {
+            render(item)
+        }
+    })
+}
+
+// Function to show only active todo items in the dom
+function showActive() {
+    ul.innerHTML = ""
+    data.forEach((item) => {
+        if (!item.complete) {
+            render(item)
+        }
+    })
+}
+
+// Function to show all todo items in the dom
+function showAll() {
+    ul.innerHTML = "";
+    data.forEach((item) => {
+        render(item)
+    })
+}
+
+
+// Event listener for handling clicks on the filter buttons and the clear completed button
 mainTodoContainer.addEventListener("click", (event) => {
     let btn = event.target.closest("button");
     if (!btn) return;
@@ -187,3 +184,34 @@ mainTodoContainer.addEventListener("click", (event) => {
             break;
     }
 })
+
+
+
+
+
+// Function to toggle between light and dark themes
+let darkBtn = document.createElement("button");
+darkBtn.classList.add("theme-btn");
+darkBtn.insertAdjacentHTML("beforeend", `<img src="./images/icon-moon.svg" alt="">`)
+
+
+function themeChange(btn) {
+    themeToggle = !themeToggle;
+    body.classList.toggle("light");
+
+    const currentBtn = btn
+    if (currentBtn) currentBtn.remove();
+
+    if (themeToggle) {
+        titleIconContainer.insertAdjacentElement("beforeend", darkBtn);
+    } else {
+        titleIconContainer.insertAdjacentElement("beforeend", themeBtn);
+    }
+}
+
+
+
+
+
+
+
