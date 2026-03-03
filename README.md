@@ -8,4 +8,5 @@ This project is a Frontend Mentor challenge focused on DOM manipulation and todo
 - **Filtering**: Users have the ability to filter tasks based on their completion status.
 
 This project showcases a hands-on approach to building interactive applications using JavaScript with a focus on user experience and interface design.
+
 Check out the tutorial and more projects on YouTube at: https://www.youtube.com/@algondev
